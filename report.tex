@@ -1,0 +1,105 @@
+\documentclass[hyperref,UTF8]{ctexart}
+\usepackage{hyperref}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\usepackage{geometry}
+\geometry{a4paper,scale=0.72}
+
+\rhead{Linux工作环境介绍}
+\pagenumbering{arabic}
+\lfoot{}
+\setlength\headwidth{\textwidth}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+
+\title{作业三: Linux工作环境介绍}
+
+
+\author{邵盛栋 \\ 信息与计算科学 3200103951}
+
+\begin{document}
+	
+	\maketitle
+	
+	\section{Linux发行版名称以及版本号}
+	\begin{verbatim}
+		Distributor ID:	Ubuntu
+		Description:	Ubuntu 16.04.7 LTS
+		Release:	16.04
+		Codename:	xenial
+	\end{verbatim}
+	\section{系统调整}
+	首先，我在Linux系统中安装了必需的packages，比如emacs编辑器、doxygen工具、gcc等编程语言译器、texlive以及gdb等等。对于这些软件包的安装情况，可使用如下两个命令进行查看和显示总数：
+	\begin{verbatim}
+		dpkg -l
+		dpkg -l | wc -l
+	\end{verbatim}
+
+	执行该命令后可列出：
+	\begin{verbatim}
+		Desired=Unknown/Install/Remove/Purge/Hold
+		| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+		|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+		||/ Name           Version      Architecture Description
+		+++-==============-============-============-=================================
+		ii  a11y-profile-m 0.1.10-0ubun amd64        Accessibility Profile Manager - U
+		ii  account-plugin 0.12+16.04.2 all          GNOME Control Center account plug
+		ii  account-plugin 0.12+16.04.2 all          GNOME Control Center account plug
+		ii  account-plugin 0.12+16.04.2 all          GNOME Control Center account plug
+		ii  accountsservic 0.6.40-2ubun amd64        query and manipulate user account
+		ii  acl            2.2.52-3     amd64        Access control list utilities
+		ii  acpi-support   0.142        amd64        scripts for handling many ACPI ev
+		ii  acpid          1:2.0.26-1ub amd64        Advanced Configuration and Power 
+		ii  activity-log-m 0.9.7-0ubunt amd64        blacklist configuration user inte
+		ii  adduser        3.113+nmu3ub all          add and remove users and groups
+		ii  adium-theme-ub 0.3.4-0ubunt all          Adium message style for Ubuntu
+		ii  adwaita-icon-t 3.18.0-2ubun all          default icon theme of GNOME (smal
+		ii  aglfn          1.7-3        all          Adobe Glyph List For New Fonts
+		ii  aisleriot      1:3.18.2-1ub amd64        GNOME solitaire card game collect
+		ii  alsa-base      1.0.25+dfsg- all          ALSA driver configuration files
+		ii  alsa-utils     1.1.0-0ubunt amd64        Utilities for configuring and usi
+		ii  amd64-microcod 3.20191021.1 amd64        Processor microcode firmware for 
+		ii  anacron        2.3-23       amd64        cron-like program that doesn't go
+		ii  apg            2.2.3.dfsg.1 amd64        Automated Password Generator - St
+		ii  app-install-da 15.10        all          Ubuntu applications (data files)
+		ii  app-install-da 16.04        all          Application Installer (data files
+		ii  apparmor       2.10.95-0ubu amd64        user-space parser utility for App
+		ii  appmenu-qt:amd 0.2.7+14.04. amd64        application menu for Qt
+		ii  appmenu-qt5    0.3.0+16.04. amd64        application menu for Qt5
+		……
+	\end{verbatim}
+	总数为\verb|2516|。
+	
+	在配置工作方面，我修改了\verb|.emacs|文件，对emacs工作环境的主题、字体颜色以及tab空格数等功能依照他人的配置进行了调整，得到了一个自己习惯的界面。此外，在网络配置方面，为了解决GitHub连接不稳定的问题，我在Ubuntu系统设置>system setting>network>network proxy中手动添加ipv4地址与代理端口号，实现共享主机VPN。
+	\begin{center}
+		\includegraphics[width=0.7\linewidth]{./图片}
+	\end{center}
+	
+	\section{工作规划}
+	\subsection{未来Linux环境的使用}
+	未来半年内我认为我会在数值分析这门课程中使用Linux环境，数值分析这门课主要内容包括：计算机浮点运算、条件数和稳定性、一元非线性方程求解、多项式插值、切比雪夫多项式、样条函数、一致逼近、最佳逼近、最小二乘、数值积分等等。大多数的算法在理论分析之后要求进行编程实现，对于算法的编写与作业的提交都需要依赖于Linux环境，由于算法之多之复杂，因此Linux的git功能对代码的整理非常重要。除此之外，类似数学论文的撰写任务也会需要Linux环境。
+	\subsection{工作环境与未来需求}
+	目前的工作环境我认为还未符合未来需求，对于文件的归纳，我还没有做好适当的调整，当未来需要更多的文件需要我去整理时，我需要在Linux环境里有一套属于我自己的文件管理方案，以便我能够在以后合理地存放各种文件。所以，我应该从现在开始有序地进行文件管理，养成良好的习惯。同时，未来也会有更多的软件需要在Linux系统中运行，我需要在每次安装软件的过程中及时地配置好工作环境，有利于自己的学习与工作。
+	\section{工作系统中的稳定与安全问题}
+	\begin{itemize}
+		\item[(1)] Linux系统文件属性管理\\
+		在该系统中文件都有相应的属性，文件权限与文件类型组成文件属性的基本条件。文件主要被分为5种类型:管道文件、设备文件、目录文件、链接文件、普通文件。每种文件都具有相应的访问权限，权限主要可以操作文件的读取、执行、删除、书写等工作，权限可以使多个用户同时对该文件进行操作。
+		\item[(2)] Linux系统文件访问权限设置管理\\
+		设置文件的操作权限对保护文件安全非常重要，用户可以通过chgrp与chown命令设置用户权限与用户群组，保证文件只能被有相关权限的用户操作，保证了文件的访问安全。
+		\item[(3)] Linux系统文件加密管理\\
+		在Linux系统对文件的管理中需要对重要文件进行加密，用系统软件生成密钥，用户将公开的密钥下载安装，用密钥解密加密的文件，确保文件不被他人轻易获得。
+		\item[(4)] 合理利用Linux系统功能\\
+		Linux操作系统功能众多使用者要合理利用系统功能，该系统中的日志文件具有记录使用状态的功能，合理的利用日志文件对用户的登录地点、登录时间、注销信息等进行反馈，及时发现错误信息，定期对Linux操作系统运行进行检测。\cite{张旭红2015linux}
+	\end{itemize}
+	
+	
+	
+	
+	\bibliographystyle{unsrt}
+	\bibliography{literature}
+	
+\end{document}
